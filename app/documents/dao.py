@@ -1,5 +1,6 @@
-from sqlalchemy import text
+from sqlalchemy import delete, text
 from app.database import async_session_maker
+from app.documents.models import Document
 
 
 class DocumentDAO:
@@ -18,3 +19,10 @@ class DocumentDAO:
             """), {"search_text": search_text})
             
             return result.mappings().all()
+    
+    @classmethod
+    async def delete_by_id(cls, document_id: int):
+        async with async_session_maker() as session:
+            query = delete(Document).filter_by(id=document_id)
+            await session.execute(query)
+            await session.commit()
