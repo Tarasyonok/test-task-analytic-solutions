@@ -1,15 +1,17 @@
-version: '3.7'
+version: '3.8'
 services:
   db:
     image: postgres:16
     container_name: documents_db
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
     env_file:
       - .env-non-dev
     ports:
       - 5432:5432
   
   documents:
-    image: documents_image
+    image: documents_app
     build:
       context: .
     container_name: documents_app
@@ -18,4 +20,5 @@ services:
     depends_on:
       - db
     command: ["/test_task/docker/app.sh"]
-      - ports: 9000:8000
+    ports:
+      - 9000:8000
