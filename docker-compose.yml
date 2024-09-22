@@ -1,10 +1,7 @@
-version: '3.8'
 services:
   db:
     image: postgres:16
     container_name: documents_db
-    volumes:
-      - postgresdata:/var/lib/postgresql/data
     env_file:
       - .env-non-dev
     ports:
