@@ -17,4 +17,10 @@ async def search(search_text: str):
 
 @router.delete("/{document_id}")
 async def delete_document(document_id: int):
-    return await DocumentDAO.delete_by_id(document_id=document_id)
+    await DocumentDAO.delete_by_id(document_id=document_id)
+    return f"Элемент с id {document_id} удалён"
+
+@router.post("/load_data")
+async def load_data():
+    await DocumentDAO.load_test_data()
+    return "Тестовые данные загружены"

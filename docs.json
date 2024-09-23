@@ -89,6 +89,25 @@
                     }
                 }
             }
+        },
+        "/documents/load_data": {
+            "post": {
+                "tags": [
+                    "Документы"
+                ],
+                "summary": "Load Data",
+                "operationId": "load_data_documents_load_data_post",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
